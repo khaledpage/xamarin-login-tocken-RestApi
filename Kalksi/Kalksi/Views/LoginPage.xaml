@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Kalksi.Views.LoginPage">
+    <ContentPage.Content>
+        <StackLayout x:Name="MasterLayout">
+            <StackLayout.Padding>
+                <OnIdiom x:TypeArguments="Thickness" Phone="20,22,40,0" Tablet="140,150,140,0"/>
+            </StackLayout.Padding>
+            <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
+                <Label x:Name="lbl_NoInternet" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Gray" />
+                <Image x:Name="LoginIcon" Source="icon.png" Margin="0,30,0,0" />
+               
+            </StackLayout>
+
+            <StackLayout x:Name="LoginEntriesStack" VerticalOptions="StartAndExpand">
+                               
+                <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="true"></ActivityIndicator>
+
+                <Label x:Name="LBLUser" Text="Username" />
+                <Entry x:Name="EnUser" Placeholder="Username" />
+                <Label x:Name="LBLPass" Text="Password" />
+                <Entry x:Name="ENPass" Placeholder="Password" IsPassword="True" />
+                <Button x:Name="BTNSignIn" Text="Sign in" Clicked="SignInProcedure"
+                        WidthRequest="100" HorizontalOptions="Center"
+                      BorderColor="Transparent"
+                BackgroundColor="Transparent"
+                       
+                        />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
