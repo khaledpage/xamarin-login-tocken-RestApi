@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Kalksi.Views.SearchPage">
+    <ContentPage.Content>
+        
+        
+        
+        <StackLayout>
+            <SearchBar Placeholder="Search items..."
+                 PlaceholderColor="LightGray"
+                 CancelButtonColor="Orange"
+                 HorizontalTextAlignment="Center"
+                    FontSize="Medium"
+                    FontAttributes="Italic" 
+                       TextColor="Black"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center"  >
+                <StackLayout Orientation="Horizontal">
+                    <Label Margin="0,25">wo muss gesucht wird?</Label>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" WidthRequest="100"  VerticalOptions="Center" >
+                    <Picker x:Name="IndustryTypePicker1"  WidthRequest="100" SelectedIndex="{Binding Industry}" Margin="30,0" >
+                    <Picker.Items>
+                        <x:String>1</x:String>
+                        <x:String>2</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+
+              
+            </StackLayout>
+            <BoxView  BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="10,0,10,0"/>
+        </StackLayout>
+
+        
+        
+    </ContentPage.Content>
+</ContentPage>

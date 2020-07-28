@@ -27,7 +27,8 @@ namespace Kalksi
         {
             InitializeComponent();
 
-            MainPage = new LoginPage();
+            //MainPage = new LoginPage();
+            MainPage = new SearchPage();
         }
 
         protected override void OnStart()
