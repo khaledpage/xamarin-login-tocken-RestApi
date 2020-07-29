@@ -138,9 +138,9 @@ namespace Kalksi.Services
 
         public async Task<T> GetResponse<T>(string weburl) where T : class
         {
-            var Token = App.TotkenDatabase.GetToken();
+            //var Token = App.TotkenDatabase.GetToken();
                 //TokenDatabase.GetToken();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
             try
             {
                 var Response = await client.GetAsync(weburl);
@@ -161,5 +161,34 @@ namespace Kalksi.Services
             catch { return null; }
             return null;                                
         }
+
+        public async Task<List<T>> GetListOfResponses<T>(string weburl) where T : class
+        {
+            //var Token = App.TotkenDatabase.GetToken();
+            //TokenDatabase.GetToken();
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+            try
+            {
+                var Response = await client.GetAsync(weburl);
+                if (Response.StatusCode == HttpStatusCode.OK)
+                {
+                    var JsonResult = Response.Content.ReadAsStringAsync().Result;
+
+                    try
+                    {
+                        var ContentResponse = JsonConvert.DeserializeObject<List<T>>(JsonResult);
+                        return ContentResponse;
+                    }
+
+                    catch { return null; }
+                }
+            }
+
+            catch { return null; }
+            return null;
+        }
+
+
+
     }
 }
