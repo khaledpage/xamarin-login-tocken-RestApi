@@ -7,53 +7,56 @@
              x:Class="Kalksi.Views.SearchPage"
          xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              >
-    
+
     <ContentPage.Content>
 
 
-        <StackLayout x:Name="Container">
+        <StackLayout x:Name="Container" BackgroundColor="WhiteSmoke">
             <StackLayout>
-            <SearchBar Placeholder="Search items..."
+                <SearchBar     x:Name="searhBar" Placeholder="Suchen nach ..."
                  PlaceholderColor="LightGray"
-                 CancelButtonColor="Orange"
+                 CancelButtonColor="Red"
                  HorizontalTextAlignment="Center"
                     FontSize="Medium"
                     FontAttributes="Italic" 
-                       TextColor="Black"/>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center"  >
-                <StackLayout Orientation="Horizontal">
-                    <Label Margin="0,25">wo muss gesucht wird?</Label>
+                       TextColor="Black"
+                       
+                           />
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center"  >
+                    <StackLayout Orientation="Horizontal">
+                        <Label Margin="0,20">Sortieren nach </Label>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" WidthRequest="100" >
+                        <Picker x:Name="SortPicker" VerticalOptions="Start" WidthRequest="100" SelectedIndex="{Binding Industry}" Margin="25,0" >
+                            <Picker.Items>
+                                <x:String>ID</x:String>
+                                <x:String>Name</x:String>
+                                <x:String>Body</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
                 </StackLayout>
+                <BoxView  BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="10,0,10,0"/>
 
-                <StackLayout Orientation="Horizontal" WidthRequest="100"  VerticalOptions="Center" >
-                    <Picker x:Name="IndustryTypePicker1"  WidthRequest="100" SelectedIndex="{Binding Industry}" Margin="30,0" >
-                    <Picker.Items>
-                        <x:String>1</x:String>
-                        <x:String>2</x:String>
-                    </Picker.Items>
-                </Picker>
             </StackLayout>
-
-              
-            </StackLayout>
-            <BoxView  BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="10,0,10,0"/>
-            
-        </StackLayout>
-
+                
+                
             <ScrollView Padding="10">
-        <StackLayout>
+                <StackLayout  BackgroundColor="FloralWhite">
+                    <ActivityIndicator x:Name="activityIndicator" Color="Red" IsRunning="true"></ActivityIndicator>
                     <ListView x:Name="ResultList" ItemsSource="{Binding SearchResultList}"
                    HasUnevenRows="true"
                    SeparatorVisibility="None"
                    ItemTapped="ResultList_ItemTapped"
                           Margin="2"    >
                         <ListView.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate> 
                                 <ViewCell >
                                     <Grid Padding="10" RowSpacing="10" ColumnSpacing="10"  BackgroundColor="White" Margin="7">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
+                                                  <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
@@ -69,12 +72,12 @@
                                        WidthRequest="66"
                                        Grid.RowSpan="2"
                                        Source="https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331257__340.png"/>
-                                        
-                                        
+
+
                                         <Label Grid.Column="1"
                                        Text="{Binding name}"
                                        VerticalOptions="End"/>
-                                        
+
                                         <Label Grid.Column="1"
                                        Grid.Row="1"
                                        VerticalOptions="Start"
@@ -87,7 +90,7 @@
                     </ListView>
 
                 </StackLayout>
-        </ScrollView>
+            </ScrollView>
 
         </StackLayout>
 

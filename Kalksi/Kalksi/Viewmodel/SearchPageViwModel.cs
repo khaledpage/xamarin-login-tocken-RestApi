@@ -4,14 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kalksi.Viewmodel
 {
     class SearchPageViwModel : INotifyPropertyChanged
     {
         private List<comment> searchResultList;
+        public List<comment> AllResultHolder { get; set; }
 
         public List<comment> SearchResultList{
 
@@ -30,20 +33,24 @@ namespace Kalksi.Viewmodel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public void SearchTo(string text)
+     
+        {
+            SearchResultList = AllResultHolder.Where(o => o.body.Contains(text) ).ToList();
+      
+        }
+
         public SearchPageViwModel()
         {
             api = App.RestService;
            
         }
 
-        public async System.Threading.Tasks.Task callAllResultAsync()
+        public async Task callAllResultAsync()
         {
-
-            var tmp = await api.GetListOfResponses<comment>(baseUrl);
-
-
-
-            SearchResultList = new List<comment>(tmp);
+         
+            SearchResultList = await api.GetListOfResponses<comment>(baseUrl);
+            AllResultHolder = SearchResultList;
         }
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -51,6 +58,24 @@ namespace Kalksi.Viewmodel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public async Task OrderByID()
+        {
 
+            
+            SearchResultList = SearchResultList.OrderBy(o => o.id).ToList();
+        }
+
+        public async Task OrderByName()
+        {
+
+
+            SearchResultList = SearchResultList.OrderBy(o => o.name).ToList();
+        }
+        public async Task OrderByBody()
+        {
+
+
+            SearchResultList = SearchResultList.OrderBy(o => o.body).ToList();
+        }
     }
 }
