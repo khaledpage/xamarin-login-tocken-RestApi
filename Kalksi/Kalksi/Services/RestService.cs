@@ -18,14 +18,7 @@ namespace Kalksi.Services
 
         public RestService()
         {
-            /*
-           Konstruktor für den REST-Service.
-             > Der HTTP-Client wird initialisiert
-             > Legen Sie die maximale Anzahl von Bytes für die gleichzeitige Verarbeitung fest
-             > Client akzeptiert Anforderungen mit einem Header, der als [application / x-www-form-urlencoded] definiert ist.
-               
-            */
-
+           
             client = new HttpClient();
             client.MaxResponseContentBufferSize = 256000;
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));

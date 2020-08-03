@@ -25,6 +25,7 @@ namespace Kalksi.Models
 
         public bool CheckInformation()
         {
+            //keine Optimale Idee aber für ein Demo ist in Ordnung
             if (this.Username == null && this.Password == null)
                 return false;
             else
